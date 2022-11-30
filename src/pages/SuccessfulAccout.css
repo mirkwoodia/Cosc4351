@@ -1,0 +1,22 @@
+.AccountCreatedPage {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #53565A;
+}
+.welcome {
+    width: 100%;
+    max-width: 480px;
+    background-color: #FFF;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.welcome h2 {
+    color: #888;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}

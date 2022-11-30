@@ -1,0 +1,56 @@
+.middle{
+	text-align: center;
+}
+
+.body{
+	width: 60%;
+	margin:50px 0px;
+	font-size: 30px;
+	padding: 0px;
+	text-align: center;
+}
+
+.input{
+	margin:0px 0px;
+	font-size: 20px;
+	padding: 0px;
+	text-align: left;
+	line-height: 1.1;
+}
+
+label, select {
+	display: inline-block;
+	width: 100px;
+}
+
+label {
+	position: relative;
+	top: -1.2em;
+	left: 5px;
+}
+
+select {
+	margin: 1.5em 0 0 0px;
+}
+
+.box {
+	width: 120px;
+	height: 30px;
+	border: 1px solid #999;
+	font-size: 18px;
+	color: #1c87c9;
+	background-color: #eee;
+	border-radius: 5px;
+	box-shadow: 4px 4px #ccc;
+}
+
+input[type=button],
+      input[type=submit] {
+        background-color: #62529c;
+        border: none;
+        color: #fff;
+        padding: 15px 30px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
