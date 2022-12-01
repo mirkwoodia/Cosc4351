@@ -83,11 +83,7 @@ function ReservationForm({props}){
                 <input type="submit" className="special" value="RESERVE"/>
                 </form>
             </div>
-            <script>
-
-      </script>
         </div>
-
     )
 }
 export default ReservationForm;

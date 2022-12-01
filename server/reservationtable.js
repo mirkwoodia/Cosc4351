@@ -3,10 +3,10 @@ class reservationtable extends restdb
 {
   constructor() 
   {
-    this.run("PRAGMA foreign_keys = ON;")
     // Calls parent constructor first
     super();
-    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start text, FOREIGN KEY (username) REFERENCES usertable(username)`
+    this.run("PRAGMA foreign_keys = ON;")
+    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start text, FOREIGN KEY (username) REFERENCES usertable(username))`
     this.run(sql)
   }
 
@@ -20,7 +20,7 @@ class reservationtable extends restdb
   getByStart(start)
   {
     return this.get(
-        'SELECT * FROM reservations WHERE start = ?',
+        'SELECT * FROM reservations WHERE res_start = ?',
         [start]
     )
   }
