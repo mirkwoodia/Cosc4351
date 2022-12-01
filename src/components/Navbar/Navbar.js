@@ -62,10 +62,10 @@ const Navbar = () => {
                         <NavLink to = '/register' activeStyle>
                             Create an account
                         </NavLink>)}
-                    {auth ? ("") : (
+
                     <NavLink to = '/reservation' activeStyle>
                         Reserve a Table
-                    </NavLink>)}
+                    </NavLink>
                 </NavMenu>
                 <NavButton>
                     {(auth) ? (<Button onClick={logout}>Logout</Button>) : (<NavButtonLink to = '/LoginForm'>Login</NavButtonLink>)}
