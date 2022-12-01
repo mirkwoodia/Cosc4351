@@ -59,9 +59,9 @@ function ReservationForm({props}){
         username: "",
         phone: "",
         email: "",
-        date: "",
         start: "",
-        guests: ""
+        end: "",
+        tables: ""
     })
     
     const [error, setError] = useState("");
@@ -72,16 +72,20 @@ function ReservationForm({props}){
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setDetails({
+        
+        const tables = (details.guests / 4) + (details.guests % 4 == 0) ? 0 : 1
+        
+        const startTime = new Date(details.date + " " + details.time);
+        const endTime = new Date(startTime.getTime() + 60 * 60000) // 60 minutes + minutes in milliseconds
+        
+        const value = {
             username: details.username,
             phone: details.phone,
             email: details.email,
-            date: details.date,
-            start: details.start,
-            guests: details.guests
-        });
-
-        const value = {details};
+            start: startTime,
+            end: endTime,
+            tables: tables,
+        }
 
         const options = {
             method: 'POST',
@@ -184,24 +188,23 @@ function ReservationForm({props}){
                         />
                     </div>
                     <div className="form-group">
-                        <label class="special" htmlFor="date">Date</label>
+                        <label class="special" htmlFor="date">Start</label>
                         <input
-                            type="text"
+                            type="date"
                             name="date"
-                            value={setDetails.date}
+                            value={setDetails.start}
                             required
-                            placeholder={"Date"}
+                            placeholder={"Start Date"}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label class="special" htmlFor="start">Start</label>
+                        <label class="special" htmlFor="time">time</label>
                         <input
-                            type="text"
-                            name="start"
-                            value={setDetails.start}
+                            type="time"
+                            name="time"
+                            value={setDetails.time}
                             required
-                            placeholder={"Start Time"}
                             onChange={handleChange}
                         />
                     </div>
