@@ -9,8 +9,6 @@ const reservationInfo = (req, res) => {
                 const s = result.start;
                 if (result == undefined)
                 {
-                    let password = req.body.details.password;
-                    bcrypt.hash(password, 10)
                     reservations.createReservation(req.body.details.username, s)
                         .then((answer) => {
                             res.json(answer);
