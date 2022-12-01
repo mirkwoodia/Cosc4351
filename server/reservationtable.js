@@ -5,16 +5,15 @@ class reservationtable extends restdb
   {
     // Calls parent constructor first
     super();
-    this.run("PRAGMA foreign_keys = ON;")
-    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start text, FOREIGN KEY (username) REFERENCES usertable(username))`
+    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start INTEGER UNIQUE)`
     this.run(sql)
   }
 
-  createReservation(userID, start)
+  createReservation(username, start)
   {
     return this.run(
-        'INSERT INTO reservations (userID, res_start) VALUES (?,?)',
-    [userID,start]);
+        'INSERT INTO reservations (username, res_start) VALUES (?,?)',
+    [username,start]);
   }
 
   getByStart(start)
@@ -28,6 +27,11 @@ class reservationtable extends restdb
   getAllReservations()
   {
     return this.all("SELECT * FROM reservations")
+  }
+
+  checkReservations()
+  {
+    return this.all("SELECT MAX(id) FROM reservations")
   }
 }
 

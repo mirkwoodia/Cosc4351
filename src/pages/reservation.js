@@ -57,7 +57,7 @@ function ReservationForm({props}){
                 <form onSubmit={handleSubmit}>
                 <div className="form">
                     <div className="form-group">
-                        <label class="special" htmlFor="username">Username</label>
+                        <label className="special" htmlFor="username">Username</label>
                         <input
                             type="text"
                             name="username"
@@ -68,7 +68,7 @@ function ReservationForm({props}){
                         />
                     </div>
                     <div className="form-group">
-                        <label class="special" htmlFor="start">Start</label>
+                        <label className="special" htmlFor="start">Start</label>
                         <input
                             type="text"
                             name="start"
