@@ -4,30 +4,30 @@ class pmtable extends restdb {
   constructor() {
     // Calls parent constructor first
     super();
-    const sql = `CREATE TABLE IF NOT EXISTS pmtable(username text PRIMARY KEY, fullname text not null, address1 text not null, address2 text, city text not null, state text not null, zipcode text not null, UNIQUE(username))`
+    const sql = `CREATE TABLE IF NOT EXISTS pmtable(username text PRIMARY KEY, name text, mailing_address text not null, billing_address text, diner text not null, payment text not null, points text not null, UNIQUE(username))`
     this.run(sql)
   }
 
 	// This can run after user registration
-	createUser(username, fullname, address1, address2, city, state, zipcode) {
+	createUser(username, name, mailing_address, billing_address, diner, payment, points) {
     return this.run(
-      'INSERT OR REPLACE INTO pmtable (username, fullname, address1, address2, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [username, fullname, address1, address2, city, state, zipcode]
+      'INSERT OR REPLACE INTO pmtable (username, name, mailing_address, billing_address, diner, payment, points) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [username, name, mailing_address, billing_address, diner, payment, points]
     )
   }
 
 	// This can run when a user goes to profile management and submits something
-	updateUser(username, fullname, address1, address2, city, state, zipcode) {
+	updateUser(username, name, mailing_address, billing_address, diner, payment, points) {
     return this.run(
       `UPDATE pmtable 
-			SET fullname = ?,
-			SET address1 = ?,
-			SET address2 = ?,
-			SET city = ?,
-			SET state = ?,
-			SET zipcode = ?,
+			SET name = ?,
+			SET mailing_address = ?,
+			SET billing_address = ?,
+			SET diner = ?,
+			SET payment = ?,
+			SET points = ?,
 			WHERE username = ?`,
-      [fullname, address1, address2, city, state, zipcode, username]
+      [name, mailing_address, billing_address, diner, payment, points, username]
     )
   }
 
@@ -38,9 +38,9 @@ class pmtable extends restdb {
       [username])
   }
 
-  getState(username){
+  getPayment(username){
     return this.get(
-      `SELECT state FROM pmtable WHERE username =?`,
+      `SELECT payment FROM pmtable WHERE username =?`,
       [username]
     )
   }
