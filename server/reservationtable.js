@@ -35,9 +35,13 @@ class reservationtable extends restdb
   }
   
   checkIfTablesAvailable(start, end) {
-    return this.all("SELECT COUNT(id) FROM reservations \
+    return this.all("SELECT SUM(tables) FROM reservations \
                     WHERE DATE(res_start) = DATE(?) \
-                    AND (TIME(res_end) <= TIME(?) OR  TIME(res_start) >= TIME(?))", [start, end, start]) }
+                    AND (TIME(res_start) <= TIME(?) OR TIME(res_end) >= TIME(?)) \
+                    AND NOT (TIME(res_end) <= TIME(?)) \
+                    AND NOT (TIME(res_start) >= TIME(?))", 
+                    [start, end, start, start, end])
+  }
   
   checkIfHighTraffic(start) {
     return this.all("SELECT COUNT(id) FROM reservations WHERE DATE(res_start) = DATE(?)",[start])

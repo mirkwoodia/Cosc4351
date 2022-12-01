@@ -32,12 +32,11 @@ const reservationID = (req, res) => {
 export const reservationAvailable = (req, res) => {
     const details = req.body
     const MAX_TABLES = 20
+    
     reservations.checkIfTablesAvailable(details.start, details.end)
         .then((result) => {
-            console.log(result)
             if (result) {
-                console.log("HELLO???")
-                const answer = result[0]['COUNT(id)'] <= MAX_TABLES
+                const answer = result[0]['SUM(tables)'] + details.tables <= MAX_TABLES
                 res.json(answer)
                 res.send(answer)
             }
