@@ -59,9 +59,9 @@ function ReservationForm({props}){
         username: "",
         phone: "",
         email: "",
-        time: "",
         start: "",
-        guests: ""
+        end: "",
+        tables: ""
     })
     
     const [error, setError] = useState("");
@@ -82,7 +82,6 @@ function ReservationForm({props}){
             username: details.username,
             phone: details.phone,
             email: details.email,
-            date: details.date,
             start: startTime,
             end: endTime,
             tables: tables,

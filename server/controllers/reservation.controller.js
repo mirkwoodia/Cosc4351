@@ -3,8 +3,10 @@ import bcrypt from 'bcrypt';
 const reservations = new reservationtable();
 
 const reservationInfo = (req, res) => {
-
-    reservations.createReservation(req.body.details.username, req.body.details.start)
+    
+    const details = req.body
+    
+    reservations.createReservation(details.username, details.start, details.end, details.tables)
         .then((answer) => {
             res.json(answer);
             res.send(answer);
