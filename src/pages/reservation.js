@@ -46,6 +46,7 @@ function ReservationForm({props}){
     useEffect(() =>{
         if(Loading && backendDetails === undefined){
             setBackendDetails({id: 0, username: 'guest', password: ''})
+            alert("You can register as well under the create user tab!")
         }
         else if(Loading && backendDetails !== undefined){
            // console.log(backendDetails)
@@ -150,7 +151,7 @@ function ReservationForm({props}){
                 <form onSubmit={handleSubmit}>
                 <div className="form">
                     <div className="form-group">
-                        <label class="special" htmlFor="username">Username</label>
+                        <label class="special" htmlFor="username">Name</label>
                         <input
                             type="text"
                             name="username"

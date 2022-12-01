@@ -5,14 +5,14 @@ class reservationtable extends restdb
   {
     // Calls parent constructor first
     super();
-    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start INTEGER UNIQUE)`
+    const sql = `CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY AUTOINCREMENT, username text, res_start DATETIME, res_end DATETIME, table INTEGER)`
     this.run(sql)
   }
 
   createReservation(username, start)
   {
     return this.run(
-        'INSERT INTO reservations (username, res_start) VALUES (?,?)',
+        'INSERT INTO reservations (username, res_start, table) VALUES (?,?, ?)',
     [username,start]);
   }
 
