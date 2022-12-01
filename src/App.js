@@ -11,6 +11,7 @@ import AccountCreated from "./pages/SuccessfulAccount";
 import ProfileUpdatedSuccessfully from "./pages/ProfileUpdatedSuccessfully";
 import Profile from "./pages/profile.js"
 import UnauthAccess from "./pages/UnauthAccess";
+import ReservationForm from "./pages/reservation"
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path = '/Profile' element={<Profile />}/>
                 <Route path = '/register' element={<RegisterForm />}/>
                 <Route path = '/LoginForm' element={<LoginForm />}/>
+                <Route path = '/reservation' element={<ReservationForm/>}/>
             </Route>
         </Routes>
         </Router>
