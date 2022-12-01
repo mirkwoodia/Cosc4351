@@ -56,7 +56,11 @@ function ReservationForm({props}){
 
     const [details, setDetails] = useState({
         username: "",
-        start: ""
+        phone: "",
+        email: "",
+        date: "",
+        start: "",
+        guests: ""
     })
     
     const [error, setError] = useState("");
@@ -69,7 +73,11 @@ function ReservationForm({props}){
         event.preventDefault();
         setDetails({
             username: details.username,
-            start: details.start
+            phone: details.phone,
+            email: details.email,
+            date: details.date,
+            start: details.start,
+            guests: details.guests
         });
 
         const value = {details};
@@ -148,7 +156,40 @@ function ReservationForm({props}){
                             name="username"
                             value={setDetails.username}
                             required
-                            placeholder={backendDetails.username}
+                            placeholder={"name"}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label class="special" htmlFor="phone">Phone</label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value={setDetails.phone}
+                            required
+                            placeholder={"Phone Number"}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label class="special" htmlFor="email">Email</label>
+                        <input
+                            type="text"
+                            name="email"
+                            value={setDetails.email}
+                            required
+                            placeholder={"Email"}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label class="special" htmlFor="date">Date</label>
+                        <input
+                            type="text"
+                            name="date"
+                            value={setDetails.date}
+                            required
+                            placeholder={"Date"}
                             onChange={handleChange}
                         />
                     </div>
@@ -160,6 +201,17 @@ function ReservationForm({props}){
                             value={setDetails.start}
                             required
                             placeholder={"Start Time"}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label class="special" htmlFor="guests"># of Guests</label>
+                        <input
+                            type="text"
+                            name="guests"
+                            value={setDetails.guests}
+                            required
+                            placeholder={"# of Guests"}
                             onChange={handleChange}
                         />
                     </div>
