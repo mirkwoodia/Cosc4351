@@ -2,7 +2,7 @@ import express from 'express';
 import registerRoute from "./routes/register.route.js";
 import loginRoute from "./routes/login.route.js";
 import pmRoute from "./routes/pm.route.js";
-import reservationRoute from "./routes/pm.route.js"
+import reservationRoute from "./routes/reservation.route.js"
 //import stateRoute from "./routes/state.route.js";
 
 const app = express();
