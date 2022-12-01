@@ -74,7 +74,6 @@ function ReservationForm({props}){
         event.preventDefault();
         
         const tables = (details.guests / 4) + (details.guests % 4 == 0) ? 0 : 1
-        
         const startTime = new Date(details.date + " " + details.time);
         const endTime = new Date(startTime.getTime() + 60 * 60000) // 60 minutes + minutes in milliseconds
         
@@ -95,21 +94,32 @@ function ReservationForm({props}){
             body: JSON.stringify(value)
         };
 
-        const response = await fetch('http://localhost:5000/reservation', options);
-        const result = await response.json();
-        if (result.id > 3) {
-            alert ("High traffic day, you will need your credit card to reserve.");
-            //console.log(result);
-            
+        const responseToCheckAvailable = await fetch('http://localhost:5000/reservationAvailable', options)
+        const available = await responseToCheckAvailable.json()
+        console.log(available)
+        
+        if (!available) {
+            const alertMessage = "Error: Sorry, there are no tables available at that time. Please try another time."
+            alert(alertMessage)
         }
         else {
-            // Add in alert to say successful reservation, and if res.Id > 3, then also say cc needed
-            console.log(result)
-            var alertMessage = "Successfully booked an appointment";
-            //alertMessage += ;
-            alert(alertMessage);
-            //navigate('/home');
+            const response = await fetch('http://localhost:5000/reservation', options);
+            const result = await response.json();
+            if (result) {
+                alert ("High traffic day, you will need your credit card to reserve.");
+                console.log(result);
+            }
+            else {
+                // Add in alert to say successful reservation, and if res.Id > 3, then also say cc needed
+                console.log(result)
+                var alertMessage = "Successfully booked an appointment";
+                //alertMessage += ;
+                alert(alertMessage);
+                //navigate('/home');
+            }
         }
+
+        
     }
 
     /*

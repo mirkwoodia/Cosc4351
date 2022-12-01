@@ -33,6 +33,15 @@ class reservationtable extends restdb
   {
     return this.all("SELECT MAX(id) FROM reservations")
   }
+  
+  checkIfTablesAvailable(start, end) {
+    return this.all("SELECT COUNT(id) FROM reservations \
+                    WHERE DATE(res_start) = DATE(?) \
+                    AND (TIME(res_end) <= TIME(?) OR  TIME(res_start) >= TIME(?))", [start, end, start]) }
+  
+  checkIfHighTraffic(start) {
+    return this.all("SELECT COUNT(id) FROM reservations WHERE DATE(res_start) = DATE(?)",[start])
+  }
 }
 
 export default reservationtable
