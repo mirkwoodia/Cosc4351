@@ -2,6 +2,7 @@ import express from 'express';
 import registerRoute from "./routes/register.route.js";
 import loginRoute from "./routes/login.route.js";
 import pmRoute from "./routes/pm.route.js";
+import reservationRoute from "./routes/pm.route.js"
 //import stateRoute from "./routes/state.route.js";
 
 const app = express();
@@ -27,7 +28,6 @@ app.all('/*', function (req, res, next) {
 
 app.use('/', registerRoute);
 app.use('/', loginRoute);
-
 app.use('/', pmRoute);
-
+app.use('/', reservationRoute)
 //app.use('/', stateRoute);
