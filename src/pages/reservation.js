@@ -84,17 +84,56 @@ function ReservationForm({props}){
 
         const response = await fetch('http://localhost:5000/reservation', options);
         const result = await response.json();
-        if (result.message)
-            console.log(result.message)
+        if (result.id > 3) {
+            alert ("High traffic day, you will need your credit card to reserve.");
+            //console.log(result);
+            
+        }
         else {
             // Add in alert to say successful reservation, and if res.Id > 3, then also say cc needed
-            console.log(result.message)
+            console.log(result)
             var alertMessage = "Successfully booked an appointment";
             //alertMessage += ;
             alert(alertMessage);
             //navigate('/home');
         }
     }
+
+    /*
+    const pageLoad = async () => {
+        setDetails({
+            username: details.username,
+            start: details.start
+        });
+
+        const value = {details};
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(value)
+        };
+
+        const response = await fetch('http://localhost:5000/reservationID', options);
+        await response.json()
+        .then (async (result) => {
+            let result2 = JSON.parse(result);
+            console.log(result2);
+        })
+        
+        let result2 = await JSON.parse(result);
+        if (result2)
+            console.log(result2)
+        else {
+            // Add in alert to say successful reservation, and if res.Id > 3, then also say cc needed
+            console.log(result2)
+            //navigate('/home');
+        }
+    }
+    pageLoad();
+    */
     
     return (
         <div className="base-container">
