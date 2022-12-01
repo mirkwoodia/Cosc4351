@@ -7,28 +7,28 @@ function ProfileManagement({props}) {
     let navigate = useNavigate();
 
     const [details, setDetails] = useState({
-        FullName: "",
-        Address1: "",
-        Address2: "",
-        City: "",
-        ZipCode: "",
-        State: "",
+        name: "",
+        mailing_address: "",
+        billing_address: "",
+        diner: "",
+        points: "",
+        payment: ""
     })
 
-    const [selectedState, setSelectedState] = useState(null);
+    const [selectedPayment, setSelectedPayment] = useState(null);
 
     const handleChange = (event) => {
         setDetails({...details, [event.target.name]: event.target.value});
     }
-
+    
     const newHandle = () => {
         setDetails({
-            FullName: details.FullName,
-            Address1: details.Address1,
-            Address2: details.Address2,
-            City: details.City,
-            ZipCode: details.ZipCode,
-            State: selectedState,
+            name: details.name,
+            mailing_address: details.mailing_address,
+            billing_address: details.billing_address,
+            diner: details.diner,
+            points: details.points,
+            payment: selectedPayment,
         });
     }
     const handleSubmit = async (event) => {
@@ -36,12 +36,12 @@ function ProfileManagement({props}) {
         console.log(details)
         event.preventDefault()
         setDetails({
-            FullName: details.FullName,
-            Address1: details.Address1,
-            Address2: details.Address2,
-            City: details.City,
-            ZipCode: details.ZipCode,
-            State: selectedState,
+            name: details.name,
+            mailing_address: details.mailing_address,
+            billing_address: details.billing_address,
+            diner: details.diner,
+            points: details.points,
+            payment: selectedPayment,
         });
 
        const value = {details};
@@ -59,10 +59,10 @@ function ProfileManagement({props}) {
         navigate('/ProfileUpdatedSuccessfully')
     }
 
-    const [states, setStates] = useState([]);
+    const [payment, setPayment] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/states',{
+        fetch('http://localhost:5000/payment',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,10 +76,10 @@ function ProfileManagement({props}) {
         .then( data => {
             //console.log(data)
             //alert(data.result)
-            setStates(data.result.state)
-            //alert(data.result.state)
+            // NOTE: investigate. inspect shows payment is undefined maybe.
+            setPayment(data.result.payment)
         })
-    },[states]);
+    },[payment]);
 
     return(
         <div classname="EditProfile">
@@ -90,72 +90,64 @@ function ProfileManagement({props}) {
                         <div class="input">                            
                             Full Name:
                             <input type="text"
-                                   name="FullName"
-                                   value={setDetails.FullName}
-                                   placeholder={details.FullName}
+                                   name="name"
+                                   value={setDetails.name}
+                                   placeholder={details.name}
                                    maxLength = "50"
-                                   required
                                    onChange={handleChange}
                             /><br></br>
                         </div>
                         <div class="input">
-                            Address 1:
+                            Mailing Address:
                             <input type="text"
-                                   name="Address1"
-                                   value={setDetails.Address1}
-                                   placeholder={details.Address1}
+                                   name="mailing_address"
+                                   value={setDetails.mailing_address}
+                                   placeholder={details.mailing_address}
                                    maxLength = "100"
                                    required
                                    onChange={handleChange}
                             /><br></br>
                         </div>
 						<div class="input">
-                            Address 2:
+                            Billing Address:
                             <input type="text"
-                                   name="Address2"
-                                   value={setDetails.Address2}
-                                   placeholder={details.Address2}
+                                   name="billing_address"
+                                   value={setDetails.billing_address}
+                                   placeholder={details.billing_address}
                                    maxLength = "100"
                                    onChange={handleChange}
                             /><br></br>
                         </div>
 						<div class="input">
-                            City:
+                            Preferred Diner:
                             <input type="text"
-                                   name="City"
-                                   value={setDetails.City}
-                                   placeholder={details.City}
+                                   name="diner"
+                                   value={setDetails.diner}
+                                   placeholder={details.diner}
                                    maxLength = "100"
                                    required
                                    onChange={handleChange}
                             /><br></br>
                         </div>
                         <div class="input">
-                            Five digit zip code:
+                            Loyalty Points:
                             <input type="text"
-                                   name="ZipCode"
-                                   value={setDetails.ZipCode}
-                                   placeholder={details.ZipCode}
+                                   name="points"
+                                   value={setDetails.points}
+                                   placeholder={details.points}
                                    pattern="[0-9]{5,}"
                                    required
                                    onChange={handleChange}
                             /><br></br>
                         </div>
 						<div class="input">
-                        Select State
-                            <select class="box" name="State" value={selectedState}
-                            onChange={(state) => setSelectedState(state.target.value)} required>
-                            <option value = "none" selected disabled hidden>State</option>
-                            <option value = "TX">TX</option>
-                            <option value = "AL">AL</option>
-                            <option value = "TN">TN</option>
-                            <option value = "AK">AK</option>
-                            <option value = "NY">NY</option>
-                            <option value = "CA">CA</option>
-                            <option value = "NV">NV</option>
-                            <option value = "WM">WM</option>
-                            <option value = "OH">OH</option>
-                            <option value = "OK">OK</option>
+                        Preferred Payment Method
+                            <select class="box" name="payment" value={selectedPayment}
+                            onChange={(payment) => setSelectedPayment(payment.target.value)} required>
+                            <option value = "none" selected disabled hidden>Payment Method</option>
+                            <option value = "cash">Cash</option>
+                            <option value = "credit">Credit</option>
+                            <option value = "check">Check</option>
                             </select>
                         </div>
                         <div>

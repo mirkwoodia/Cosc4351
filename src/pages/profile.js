@@ -12,13 +12,12 @@ function Profile({props}) {
     })
 
     const [details, setDetails] = useState({
-        username: "",
-        fullname: "",
-        address1: "",
-        address2: "",
-        city: "",
-        zipcode: "",
-        state: ""
+        name: "",
+        mailing_address: "",
+        billing_address: "",
+        diner: "",
+        points: "",
+        payment: ""
     })
 
     useEffect(() => {
@@ -74,42 +73,42 @@ function Profile({props}) {
                         <div class="input">                            
                             Full Name:
                             <input type="text"
-                                   value={details.fullname}
+                                   value={details.name}
                                    placeholder=""
 																	 disable
                             /><br></br>
                         </div>
                         <div class="input">
-                            Address 1:
+                            Mailing Address:
                             <input type="text"
-                                   value={details.address1}
+                                   value={details.mailing_address}
 																	 disable
                             /><br></br>
                         </div>
 						<div class="input">
-                            Address 2:
+                            Billing Address:
                             <input type="text"
-                                   value={details.address2}
+                                   value={details.billing_address}
 																	 disable
                             /><br></br>
                         </div>
 						<div class="input">
-                            City:
+                            Preferred Diner:
                             <input type="text"
-                                   value={details.city}
+                                   value={details.diner}
 																	 disable
                             /><br></br>
                         </div>
                         <div class="input">
-                            Five digit zip code:
+                            Points
                             <input type="text"
-                                   value={details.zipcode}
+                                   value={details.points}
 																	 disable
                             /><br></br>
                         </div>
 												<div class="input">
-                        State
-                        <input type="text" value={details.state} disable/><br></br>
+                        Payment Method
+                        <input type="text" value={details.payment} disable/><br></br>
                         </div>
                     </label>      
                      

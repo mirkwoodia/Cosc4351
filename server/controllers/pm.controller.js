@@ -13,12 +13,12 @@ const createPMInfo = (req,res) => {
 	console.log("Received New Profile Update for " + arr);
     profile.createUser(
         arr,
-        req.body.details.FullName,
-        req.body.details.Address1,
-        req.body.details.Address2,
-        req.body.details.City,
-        req.body.details.State,
-		req.body.details.ZipCode
+        req.body.details.Name,
+        req.body.details.mailing_address,
+        req.body.details.billing_address,
+        req.body.details.diner,
+        req.body.details.payment,
+		req.body.details.points
     );
 }
 
