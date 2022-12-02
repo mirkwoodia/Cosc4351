@@ -90,9 +90,15 @@ function ProfileManagement({props}) {
                         <div class="input">                            
                             Full Name:
                             <input type="text"
+<<<<<<< Updated upstream
                                    name="FullName"
                                    value={setDetails.FullName}
                                    placeholder={details.FullName}
+=======
+                                   name="name"
+                                   
+                                   placeholder={details.name}
+>>>>>>> Stashed changes
                                    maxLength = "50"
                                    required
                                    onChange={handleChange}
@@ -133,10 +139,16 @@ function ProfileManagement({props}) {
                         <div class="input">
                             Five digit zip code:
                             <input type="text"
+<<<<<<< Updated upstream
                                    name="ZipCode"
                                    value={setDetails.ZipCode}
                                    placeholder={details.ZipCode}
                                    pattern="[0-9]{5,}"
+=======
+                                   name="points"
+                                   value={setDetails.points}
+                                   placeholder={details.points}
+>>>>>>> Stashed changes
                                    required
                                    onChange={handleChange}
                             /><br></br>
